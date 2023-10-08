@@ -1,5 +1,6 @@
 // import Message from "./Message";
 
+import { useState } from "react";
 import Alert from "./components/Alert";
 import Button from "./components/Button";
 import ListGroup from "./components/ListGroup";
@@ -12,6 +13,8 @@ function App() {
     console.log(item);
   };
 
+  const [alertHiden, alertVisible] = useState(false);
+
   return (
     <div>
       <div>
@@ -23,13 +26,13 @@ function App() {
         <br></br>
       </div>
       <div>
-        <Alert>Hello world</Alert>
-      </div>
-      <div>
+        {alertHiden && (
+          <Alert onClose={() => alertVisible(false)}>My Alert</Alert>
+        )}
         <Button
           color="success"
           onClick={() => {
-            console.log("Button Clicked");
+            alertVisible(true);
           }}
         >
           My Button
